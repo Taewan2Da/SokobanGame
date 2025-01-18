@@ -193,15 +193,8 @@ void GameLevel::Update(float deltaTime)
 	Super::Update(deltaTime);
 
 	// 게임이 클리어됐으면, 게임 종료 처리.
-	if (isGameClear)
+	if (CheckGameClear())
 	{
-		// 대략 한 프레임 정도의 시간 대기.
-		//static float elapsedTime = 0.0f;
-		//elapsedTime += deltaTime;
-		//if (elapsedTime < 0.1f)
-		//{
-		//	return;
-		//}
 
 		// 타이머.
 		static Timer timer(0.1f);
@@ -215,7 +208,8 @@ void GameLevel::Update(float deltaTime)
 		Engine::Get().SetCursorPosition(0, Engine::Get().ScreenSize().y);
 
 		//엔딩화면으로 이동
-	
+		//Log("asdf");
+		//Sleep(1000);
 		Game::Get().EndingScreen(); //<- 내가 했던건데 고쳐야댐(삭제)
 		//@todo - intro와 유사하게 헤더랑 클래스 만들어서 엔딩씬 구현
 		//Engine::Get().LoadLevel(new EndingLevel()); <-위에 include 때리고 하면 댐
@@ -225,7 +219,6 @@ void GameLevel::Update(float deltaTime)
 
 void GameLevel::Draw()
 {
-
 
 	// 맵 그리기.
 	for (auto* actor : map)
@@ -350,26 +343,20 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 	return false;
 }
 
+//플레이어와 타겟이 충돌하면 게임클리어 @todo:수정해야댐
 bool GameLevel::CheckGameClear()
 {
-	// 점수 확인을 위한 변수.
-	int currentScore = 0;
-	int targetScore = targets.Size();
-
-	// 타겟 위치에 배치된 박스 개수 세기.
-	for (auto* box : boxes)
+	// 플레이어와 타겟 충돌 체크
+	for (auto* target : targets)
 	{
-		for (auto* target : targets)
+		if (player->Position() == target->Position())  // 플레이어가 타겟에 닿으면
 		{
-			// 점수 확인.
-			if (box->Position() == target->Position())
-			{
-				++currentScore;
-				break;
-			}
+			isGameClear = true;
+			return true;
 		}
 	}
 
-	// 획득한 점수가 목표 점수와 같은지 비교.
-	return currentScore == targetScore;
+	return false;
+
 }
+

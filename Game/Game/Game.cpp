@@ -109,7 +109,7 @@ void Game::EndingScreen()
 
 		std::cout << "\n\n";
 		std::cout << "                  Press enterkey to close\n";
-		getchar(); // 아무키 입력 기다림(인데 엔터키쳐야 넘어가짐)
+		Sleep(1000);
 		system("cls");
 
 		// 게임 종료 처리.
