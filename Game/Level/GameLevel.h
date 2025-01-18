@@ -43,4 +43,7 @@ private:
 
 	// 게임 클리어 변수.
 	bool isGameClear = false;
+
+	// 플레이어 초기 위치 저장
+	Vector2 playerInitialPosition;
 };

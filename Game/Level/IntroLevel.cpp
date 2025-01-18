@@ -55,7 +55,9 @@ void IntroLevel::Update(float deltaTime)
 	Super::Update(deltaTime);
 
 	// 아무 키나 눌리면, 화면 바꾸거나 다른 레벨로 이동.
-	if (Engine::Get().AnyKeyDown())
+	//if (Engine::Get().AnyKeyDown())
+	//테스트로 엔터키
+	if (Engine::Get().GetKeyDown(VK_RETURN))
 	{
 		// 보여줄 인트로 화면이 남았으면 다음 단계로 이동.
 		if (currentStep < 1)

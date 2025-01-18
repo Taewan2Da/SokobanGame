@@ -175,6 +175,7 @@ GameLevel::GameLevel()
 				this
 			);
 			actors.PushBack(player);
+			playerInitialPosition = Vector2(xPosition, yPosition);
 		}
 
 		++xPosition;
@@ -309,61 +310,15 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 		}
 	}
 
-	// 박스가 있을 때 처리. @Todo 박스에 닿으면 시작지점으로 되돌아가기
+	// 박스에 닿으면 시작지점으로 되돌아가기
 	if (searchedBox)
 	{
-		// 이동 방향.
-		int directionX = position.x - player->Position().x;
-		int directionY = position.y - player->Position().y;
+		// 플레이어를 초기 위치로 되돌림
+		player->SetPosition(playerInitialPosition);
 
-		// 박스가 이동할 새 위치.
-		Vector2 newPosition 
-			= searchedBox->Position() + Vector2(directionX, directionY);
-
-		// 추가 검색 (박스).
-		for (auto* box : boxes)
-		{
-			// 예외 처리.
-			if (box == searchedBox)
-			{
-				continue;
-			}
-
-			// 이동할 위치에 다른 박스가 있다면 이동 불가.
-			if (box->Position() == newPosition)
-			{
-				return false;
-			}
-		}
-
-		// 추가 검색 (맵).
-		for (auto* actor : map)
-		{
-			// 이동하려는 위치에 있는 액터 검색.
-			if (actor->Position() == newPosition)
-			{
-				// 형변환을 통해 물체의 타입 확인.
-
-				// 이동하려는 위치에 벽이 있으면 이동 불가.
-				if (actor->As<Wall>() || actor->As<Wall2>() || actor->As<Wall3>()||
-					actor->As<Wall4>() || actor->As<Wall5>() || actor->As<Wall6>())
-				{
-					return false;
-				}
-
-				// 땅이나 타겟이면 이동 가능.
-				if (actor->As<Ground>() || actor->As<Target>() || actor->As<fakeGround>())
-				{
-					// 박스 이동 처리.
-					searchedBox->SetPosition(newPosition);
-
-					// 게임 클리어 여부 확인.
-					isGameClear = CheckGameClear();
-
-					return true;
-				}
-			}
-		}
+		//디버깅 성공()
+		//std::cout << "박스에 닿음! 플레이어가 초기 위치로 이동합니다.\n";
+		return false;
 	}
 
 	// 이동하려는 위치에 벽이 있는지 확인.
