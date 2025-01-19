@@ -10,7 +10,7 @@ public:
 	IntroLevel();
 	~IntroLevel();
 
-	virtual void Update(float delatTime) override;
+	virtual void Update(float deltaTime) override;
 	virtual void Draw() override;
 
 private:

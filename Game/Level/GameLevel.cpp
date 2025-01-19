@@ -8,6 +8,7 @@
 #include "Actor/Player.h"
 #include "Actor/fakeGround.h"
 #include"Game/Game.h"
+#include"Level/EndingLevel.h"
 
 #include "Engine/Timer.h"
 
@@ -20,7 +21,7 @@ GameLevel::GameLevel()
 	// 맵 파일 불러와 레벨 로드.
 	// 파일 읽기.
 	FILE* file = nullptr;
-	fopen_s(&file, "../Assets/Maps/Test2.txt", "rb");
+	fopen_s(&file, "../Assets/Maps/Test.txt", "rb");
 
 	// 파일 처리.
 	if (file == nullptr)
@@ -210,7 +211,8 @@ void GameLevel::Update(float deltaTime)
 		//엔딩화면으로 이동
 		//Log("asdf");
 		//Sleep(1000);
-		Game::Get().EndingScreen(); //<- 내가 했던건데 고쳐야댐(삭제)
+		Engine::Get().LoadLevel(new EndingLevel());
+		//Game::Get().EndingScreen(); //<- 내가 했던건데 고쳐야댐(삭제)
 		//@todo - intro와 유사하게 헤더랑 클래스 만들어서 엔딩씬 구현
 		//Engine::Get().LoadLevel(new EndingLevel()); <-위에 include 때리고 하면 댐
 	}

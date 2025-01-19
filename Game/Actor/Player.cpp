@@ -4,7 +4,7 @@
 #include "Level/GameLevel.h"
 
 Player::Player(const Vector2& position, GameLevel* level)
-	: DrawableActor("★"), refLevel(level)
+	: DrawableActor("★"), refLevel(level) // 플레이어
 {
 	// 위치 설정.
 	this->position = position;

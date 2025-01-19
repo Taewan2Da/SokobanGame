@@ -9,7 +9,6 @@ public:
 	~Game();
 
 	void ToggleMenu();
-	void EndingScreen();
 
 	static Game& Get() { return *instance; }
 
