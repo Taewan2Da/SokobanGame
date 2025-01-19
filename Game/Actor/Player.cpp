@@ -4,12 +4,12 @@
 #include "Level/GameLevel.h"
 
 Player::Player(const Vector2& position, GameLevel* level)
-	: DrawableActor("¡Ú"), refLevel(level) // ÇÃ·¹ÀÌ¾î
+	: DrawableActor("â˜…"), refLevel(level) // í”Œë ˆì´ì–´
 {
-	// À§Ä¡ ¼³Á¤.
+	// ìœ„ì¹˜ ì„¤ì •.
 	this->position = position;
 
-	// »ö»ó ¼³Á¤.
+	// ìƒ‰ìƒ ì„¤ì •.
 	color = Color::Yellow;
 
 }
@@ -18,20 +18,20 @@ void Player::Update(float deltaTime)
 {
 	Super::Update(deltaTime);
 
-	// ESC Á¾·á.
+	// ESC ì¢…ë£Œ.
 	if (Engine::Get().GetKeyDown(VK_ESCAPE))
 	{
 		//Engine::Get().QuitGame();
-		// ¸Ş´º Åä±Û.
+		// ë©”ë‰´ í† ê¸€.
 		Game::Get().ToggleMenu();
 	}
 
-	// »óÇÏÁÂ¿ì.
+	// ìƒí•˜ì¢Œìš°.
 	if (Engine::Get().GetKeyDown(VK_LEFT) || Engine::Get().GetKeyDown(0x41))
 	{
-		//ÇÑ¹ø ´©¸¦¶§ 2Ä­¾¿ ÀÌµ¿
+		//í•œë²ˆ ëˆ„ë¥¼ë•Œ 2ì¹¸ì”© ì´ë™
 		for (int i = 0; i < 2;i++) {
-			// ÀÌµ¿ °¡´ÉÇÑÁö È®ÀÎ.
+			// ì´ë™ ê°€ëŠ¥í•œì§€ í™•ì¸.
 			if (refLevel->CanPlayerMove(
 				Vector2(position.x - 1, position.y))
 				)
@@ -44,8 +44,10 @@ void Player::Update(float deltaTime)
 
 	if (Engine::Get().GetKeyDown(VK_RIGHT) || Engine::Get().GetKeyDown(0x44))
 	{
+		//ë°•ìŠ¤ì— ë‹¿ìœ¼ë©´ ì´ˆê¸°ìœ„ì¹˜ë¡œ ì´ë™í•˜ëŠ”ë° 2ì¹¸ì”©ì´ë™ì´ë¼ 1ì¹¸ì´ë™í–ˆì„ë•Œ ë°•ìŠ¤ ë§Œë‚˜ë©´ ì´ˆê¸°ìœ„ì¹˜ë¡œ ì´ë™í•˜ê³  í•œì¹¸ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë” ì´ë™í•¨
+		// if(ì´ˆê¸°ìœ„ì¹˜ë¡œ ì´ë™í–ˆìœ¼ë©´ ){break} <- ì´ëŸ° ëŠë‚Œìœ¼ë¡œ í•´ì•¼ë ê±° ê°™ì€ë° ëª¨ë¥´ê² ìŒ @todo
 		for (int i = 0; i < 2;i++) {
-			// ÀÌµ¿ °¡´ÉÇÑÁö È®ÀÎ.
+			// ì´ë™ ê°€ëŠ¥í•œì§€ í™•ì¸.
 			if (refLevel->CanPlayerMove(
 				Vector2(position.x + 1, position.y))
 				)
@@ -59,7 +61,7 @@ void Player::Update(float deltaTime)
 	if (Engine::Get().GetKeyDown(VK_UP) || Engine::Get().GetKeyDown(0x57))
 	{
 		for (int i = 0; i < 2;i++) {
-			// ÀÌµ¿ °¡´ÉÇÑÁö È®ÀÎ.
+			// ì´ë™ ê°€ëŠ¥í•œì§€ í™•ì¸.
 			if (refLevel->CanPlayerMove(
 				Vector2(position.x, position.y - 1))
 				)
@@ -72,7 +74,7 @@ void Player::Update(float deltaTime)
 	if (Engine::Get().GetKeyDown(VK_DOWN) || Engine::Get().GetKeyDown(0x53))
 	{
 		for (int i = 0; i < 2;i++) {
-			// ÀÌµ¿ °¡´ÉÇÑÁö È®ÀÎ.
+			// ì´ë™ ê°€ëŠ¥í•œì§€ í™•ì¸.
 			if (refLevel->CanPlayerMove(
 				Vector2(position.x, position.y + 1))
 				)
@@ -82,7 +84,7 @@ void Player::Update(float deltaTime)
 		}
 	}
 
-	//·£´ı À§Ä¡ @Todo: »õ·Î Â¥¾ß´ï ¾ÈÇÒ°¡´É¼º ³ôÀ½
+	//ëœë¤ ìœ„ì¹˜ @Todo: ìƒˆë¡œ ì§œì•¼ëŒ ì•ˆí• ê°€ëŠ¥ì„± ë†’ìŒ
 	//if (Engine::Get().GetKeyDown(VK_SPACE))
 	//{
 	//	if (refLevel->CanPlayerMove(
