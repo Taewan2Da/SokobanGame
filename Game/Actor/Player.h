@@ -13,6 +13,7 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
+
 private:
 	// 게임 레벨을 참조하는 변수.
 	GameLevel* refLevel = nullptr;

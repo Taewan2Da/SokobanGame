@@ -27,11 +27,24 @@ GameLevel::GameLevel()
 
 	// 맵 파일 불러와 레벨 로드.
 	// 파일 읽기.
+
 	FILE* file = nullptr;
-
-	fopen_s(&file, "../Assets/Maps/Test.txt", "rb");
-
-
+	//맵 3개중에랜덤으로 한개 뽑기
+	int randomCase = (rand() % 3) + 1;
+	switch (randomCase)
+	{
+	case 1:
+		fopen_s(&file, "../Assets/Maps/Test.txt", "rb");
+		break;
+	case 2:
+		fopen_s(&file, "../Assets/Maps/Test2.txt", "rb");
+		break;
+	case 3:
+		fopen_s(&file, "../Assets/Maps/Test3.txt", "rb");
+		break;
+	}
+		
+	
 	// 파일 처리.
 	if (file == nullptr)
 	{
@@ -419,7 +432,7 @@ bool GameLevel::CheckGameClear()
 	{
 		if (player->Position() == target->Position())  // 플레이어가 타겟에 닿으면
 		{
-			isGameClear = true;
+			//isGameClear = true;
 			return true;
 		}
 	}

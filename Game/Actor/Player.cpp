@@ -3,6 +3,10 @@
 #include "Game/Game.h"
 #include "Level/GameLevel.h"
 
+//치트키
+#include "Engine/Timer.h"
+#include"Level/EndingLevel.h"
+
 //로그 시간대기 
 #include <iostream>
 #include <chrono>
@@ -118,7 +122,8 @@ void Player::Update(float deltaTime)
 	//스페이스바 누를시 지정위치 이동가능 사용가능횟수 3
 	if (Engine::Get().GetKeyDown(VK_SPACE))
 	{
-		if (spaceBarPressCount < 3)
+		spaceBarPressCount++;
+		if (spaceBarPressCount < 4)
 		{
 			if (refLevel->CanPlayerMove(
 				Vector2(position.x, position.y))
@@ -128,22 +133,57 @@ void Player::Update(float deltaTime)
 				position.x = 52;
 				position.y = 11;
 			}
-			spaceBarPressCount++;
+		
 		}
-		else
-		{
+		
+			else if (spaceBarPressCount < 21)
+			{
 			system("cls");
 			Engine::Get().SetCursorPosition(Vector2(52, 8));
 			std::cout << "  /\\_/\\" << std::flush;
 			Engine::Get().SetCursorPosition(Vector2(52, 9));
-			std::cout << " ( o.o ) " << std::flush; 
+			std::cout << " ( o.o ) " << std::flush;
 			Engine::Get().SetCursorPosition(Vector2(52, 10));
 			std::cout << "  > ^ <" << std::flush;
 			Engine::Get().SetCursorPosition(Vector2(40, 12));
 			std::cout << "더 이상 스페이스바 사용이 불가능합니다." << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
 			std::this_thread::sleep_for(std::chrono::milliseconds(500)); //0.5초 대기
 			system("cls");
-		}
 			
+			}
+		//21번째 부터 고양이많이 나오는 이스터에그
+		else
+		{
+
+			system("cls");
+			Engine::Get().SetCursorPosition(Vector2(22, 8));
+			std::cout << "  /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(22, 9));
+			std::cout << " ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(22, 10));
+			std::cout << "  > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <" << std::flush;
+
+			Engine::Get().SetCursorPosition(Vector2(22, 12));
+			std::cout << "  /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(22, 13));
+			std::cout << " ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(22, 14));
+			std::cout << "  > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <" << std::flush;
+
+			Engine::Get().SetCursorPosition(Vector2(22, 17));
+			std::cout << "  /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\    /\\_/\\" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(22, 18));
+			std::cout << " ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )  ( o.o )" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(22, 19));
+			std::cout << "  > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <    > ^ <" << std::flush;
+			//계속 누르면 왔다갔다 해보려고
+			Engine::Get().SetCursorPosition(Vector2(40, 21));
+			std::cout << "더 이상 스페이스바 사용이 불가능합니다." << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
+			std::this_thread::sleep_for(std::chrono::milliseconds(500)); //0.5초 대기
+			system("cls");
+			
+		
+		}
+	
 	}
 }
