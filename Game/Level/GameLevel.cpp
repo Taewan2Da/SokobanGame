@@ -299,11 +299,6 @@ void GameLevel::Draw()
 
 bool GameLevel::CanPlayerMove(const Vector2& position)
 {
-	// 게임이 클리어된 경우 바로 종료.
-	//if (isGameClear)
-	//{
-	//	return false;
-	//}
 
 	// 박스 검색.
 	Box* searchedBox = nullptr;
@@ -325,25 +320,61 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 		//(20,10)위치에 충돌알림 로그 출력
 		for (int ix = 0; ix < 17;ix++)
 		{
-			int x = rand() % 60;
-			int y = rand() % 30;
+			int x = rand() % 60 + 25;
+			int y = rand() % 25;
 			Engine::Get().SetCursorPosition(Vector2(x, y));  // 특정 위치로 커서 이동
-			std::cout << "충돌!!!! " << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
+			std::cout << "충돌!!!!" << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
 		}
 		
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.3초 대기
 
 		system("cls");
 
-		//(50,12)위치에 충돌횟수 로그 출력
-		int x2 = 50;
-		int y2 = 12;
-		//setCursorPosition(x2, y2);
-		Engine::Get().SetCursorPosition(Vector2(x2, y2));
-		count++;
-		std::cout << "충돌횟수: " << count << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
-		std::this_thread::sleep_for(std::chrono::seconds(1));  // 1초 대기
-		system("cls");
+		if (count < 9)
+		{
+			//setCursorPosition(x2, y2);
+			Engine::Get().SetCursorPosition(Vector2(50, 8));
+			std::cout << "  /\\_/\\" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(50, 9));
+			std::cout << " ( o.o ) " << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(50, 10));
+			std::cout << "  > ^ <" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(50, 12));
+			count++;
+			std::cout << "충돌횟수: " << count << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
+			std::this_thread::sleep_for(std::chrono::seconds(1));  // 1초 대기
+			system("cls");
+		}else if(count < 19)
+		{
+			//setCursorPosition(x2, y2);
+			Engine::Get().SetCursorPosition(Vector2(47, 8));
+			std::cout << "  /\\_/\\    /\\_/\\" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(47, 9));
+			std::cout << " ( o.o )  ( o.o )" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(47, 10));
+			std::cout << "  > ^ <    > ^ <" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(50, 12));
+			count++;
+			std::cout << "충돌횟수: " << count << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
+			std::this_thread::sleep_for(std::chrono::seconds(1));  // 1초 대기
+			system("cls");
+		}
+		else
+		{
+			//setCursorPosition(x2, y2);
+			Engine::Get().SetCursorPosition(Vector2(42, 8));
+			std::cout << "  /\\_/\\    /\\_/\\    /\\_/\\" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(42, 9));
+			std::cout << " ( o.o )  ( o.o )  ( o.o )" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(42, 10));
+			std::cout << "  > ^ <    > ^ <    > ^ <" << std::flush;
+			Engine::Get().SetCursorPosition(Vector2(50, 12));
+			count++;
+			std::cout << "충돌횟수: " << count << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
+			std::this_thread::sleep_for(std::chrono::seconds(1));  // 1초 대기
+			system("cls");
+		}
+		
 
 
 		return false;
