@@ -34,13 +34,13 @@ GameLevel::GameLevel()
 	switch (randomCase)
 	{
 	case 1:
-		fopen_s(&file, "../Assets/Maps/Test.txt", "rb");
+		fopen_s(&file, "../Assets/Maps/Map1.txt", "rb");
 		break;
 	case 2:
-		fopen_s(&file, "../Assets/Maps/Test2.txt", "rb");
+		fopen_s(&file, "../Assets/Maps/Map2.txt", "rb");
 		break;
 	case 3:
-		fopen_s(&file, "../Assets/Maps/Test3.txt", "rb");
+		fopen_s(&file, "../Assets/Maps/Map3.txt", "rb");
 		break;
 	}
 		
