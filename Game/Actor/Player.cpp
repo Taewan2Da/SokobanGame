@@ -114,10 +114,15 @@ void Player::Update(float deltaTime)
 
 	Engine::Get().SetCursorPosition(Vector2(40, 21));  // 특정 위치로 커서 이동
 	std::cout << "스페이스바 사용 가능 횟수: 3" << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
-
-
 	Engine::Get().SetCursorPosition(Vector2(40, 22));  // 특정 위치로 커서 이동
 	std::cout << "스페이스바 사용 횟수: " << spaceBarPressCount << std::flush;  // 이전 출력 덮어쓰기를 위해 flush 사용
+	
+	//esc 눌러도 스페이스 바 사용횟수 오류 고침
+	if (Game::Get().GetKeyDown(VK_ESCAPE))
+	{
+		system("cls");
+	}
+	
 
 	//스페이스바 누를시 지정위치 이동가능 사용가능횟수 3
 	if (Engine::Get().GetKeyDown(VK_SPACE))
