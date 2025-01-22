@@ -136,7 +136,7 @@ void Player::Update(float deltaTime)
 		
 		}
 		
-			else if (spaceBarPressCount < 21)
+			else if (spaceBarPressCount < 11)
 			{
 			system("cls");
 			Engine::Get().SetCursorPosition(Vector2(52, 8));
@@ -151,7 +151,7 @@ void Player::Update(float deltaTime)
 			system("cls");
 			
 			}
-		//21번째 부터 고양이많이 나오는 이스터에그
+		//11번째 부터 고양이많이 나오는 이스터에그
 		else
 		{
 
